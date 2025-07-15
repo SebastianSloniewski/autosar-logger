@@ -3,7 +3,7 @@
 #include <sstream>
 #include <memory>
 
-using namespace ara::log;
+using namespace ara::log;   
 
 class LogStream {
 public:
@@ -25,7 +25,7 @@ public:
     void Flush() {
         if (_out) {
             *_out << _buffer.str() << std::endl;
-            _buffer.str(""); // Clear buffer
+            _buffer.str("");
             _buffer.clear();
         }
     }

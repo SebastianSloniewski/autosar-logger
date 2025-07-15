@@ -58,6 +58,8 @@ private:
     const LogLevel logLevel;
     const LogMode logMode;
 
+    std::string _logLevelToString(LogLevel logLevel);
+
 };
 }
 }

@@ -22,6 +22,9 @@ class LogStream{
     void setOutput(std::ostream* out);
 
     private:
+    const std::string appId;
+    const std::string ctxId;
+    const std::string logLevel;
     std::ostringstream _buffer;
     std::ostream* _out;
     LogLevel logLevel;
