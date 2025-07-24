@@ -5,9 +5,6 @@
 #include "logging.h"
 namespace ara{ 
 namespace log{
-
-template<typename T>
-
 class LogStream{
     public:
 
@@ -15,19 +12,24 @@ class LogStream{
     ~LogStream();
 
     // Overload << for any type
-
-    LogStream& operator<<(const T& value);
+    template<typename T>
+    LogStream& operator<<(const T& value) {
+        _buffer << value;
+        return *this;
+    }
 
     void Flush();
-    void setOutput(std::ostream* out);
 
     private:
     const std::string appId;
     const std::string ctxId;
     const std::string logLevel;
     std::ostringstream _buffer;
-    std::ostream* _out;
+    std::ostream* _out; //std::cout na razie
     LogLevel logLevel;
+
+
+    void setOutput(std::ostream* out);
 };
 }
 }

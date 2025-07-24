@@ -1,0 +1,13 @@
+support for console output only (stdout)
+support for streaming built-in integral, float and string types (const char*, std::string)
+independent logging contexts and independent log stream objects
+severity levels: Debug, Info, Warn, Error
+application id and context id printed as a prefix to each log message (4 characters only per id)
+log level printed after context id and colour-coded (debug: green, info: blue, warn: yellow, error: red)
+newline appended automatically to each log message
+payload arguments separated by single whitespace
+log message dumped with explicit flush or by destruction of stream object
+log message not present when nothing streamed
+stream object can be reused after explicit flush
+filtering logging above severity threshold
+logging reinitialization not possible (repeated calls ignored)
