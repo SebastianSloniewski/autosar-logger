@@ -1,33 +1,19 @@
 cmake_minimum_required(VERSION 3.18)
 project(ara-log LANGUAGES CXX)
 
-# 2.1  Library target with sources
-add_library(ara-log
-    src/ara/log/logging.cpp
-    src/ara/log/logger.cpp
+# Allow consumers just: target_link_libraries(app PRIVATE ara-log)
+add_library(ara-log STATIC
     src/ara/log/log_stream.cpp
-)
+    src/ara/log/logger.cpp
+    src/ara/log/logging.cpp)
 
 target_include_directories(ara-log
     PUBLIC
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>   # during build
-        $<INSTALL_INTERFACE:include>                             # after install
-)
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+        $<INSTALL_INTERFACE:include>)
 
-target_compile_features(ara-log PUBLIC cxx_std_20)
-target_compile_options(ara-log PRIVATE -Wall -Wextra -Werror)
-
-# 2.2  Installation rules
-include(GNUInstallDirs)            # defines ${CMAKE_INSTALL_INCLUDEDIR} etc.
+target_compile_features(ara-log PUBLIC cxx_std_17)
+target_compile_options(ara-log PRIVATE -Wall -Wextra -pedantic)
 install(TARGETS ara-log
-        EXPORT  ara-log-config
-        ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
-        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
-
-install(DIRECTORY include/         # copies header hierarchy verbatim
-        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
-
-install(EXPORT  ara-log-config
-        NAMESPACE ara::
-        DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/ara-log)
+        ARCHIVE DESTINATION lib)
+install(DIRECTORY include/ DESTINATION include)

@@ -19,12 +19,12 @@ public:
     Logger& operator=(const Logger&) = delete;
 
     //Log*() functions - creates unnamed LogStream objects
-    LogStream LogFatal() const noexcept;
-    LogStream LogError() const noexcept;
-    LogStream LogWarn() const noexcept;
-    LogStream LogInfo() const noexcept;
-    LogStream LogDebug() const noexcept;
-    LogStream LogVerbose() const noexcept;
+    LogStream LogFatal()    const noexcept;
+    LogStream LogError()    const noexcept;
+    LogStream LogWarn()     const noexcept;
+    LogStream LogInfo()     const noexcept;
+    LogStream LogDebug()    const noexcept;
+    LogStream LogVerbose()  const noexcept;
 
 private: 
 
@@ -38,7 +38,7 @@ private:
     friend Logger& CreateLogger(ara::core::StringView ctxId, 
                                ara::core::StringView ctxDescription,
                                LogLevel ctxDefLogLevel) noexcept;
-                               
+
     friend Logger& CreateLogger(ara::core::StringView ctxId, 
                                ara::core::StringView ctxDescription) noexcept;
     

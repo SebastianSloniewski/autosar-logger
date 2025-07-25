@@ -4,7 +4,7 @@
 using namespace ara{
 using namespace log{
 
-class {
+class Logging{
 public:
     static void InitLogging(
         std::string appId,

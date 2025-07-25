@@ -2,14 +2,19 @@
 #define LOGSTREAM_HPP
 
 
-#include "logging.h"
+#include "ara/log/common.h"
+#include "common.h"
+#include "logger.h"
+#include <sstream>
+#include <memory>
+
 namespace ara{ 
 namespace log{
 class LogStream{
     public:
 
-    LogStream();
-    ~LogStream();
+    LogStream(LogLevel lvl, Logger* owner) noexcept;
+    ~LogStream() noexcept;
 
     // Overload << for any type
     template<typename T>
@@ -18,15 +23,12 @@ class LogStream{
         return *this;
     }
 
-    void Flush();
+    void Flush() noexcept;
 
     private:
-    const std::string appId;
-    const std::string ctxId;
-    const std::string logLevel;
-    std::ostringstream _buffer;
-    std::ostream* _out; //std::cout na razie
-    LogLevel logLevel;
+    LogLevel   level_;
+    Logger*    logger_;
+    std::ostringstream buffer_;
 
 
     void setOutput(std::ostream* out);

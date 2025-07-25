@@ -23,6 +23,6 @@ void LogStream::Flush() {
     }
 }
 
-void LogStream::setOutput(std::ostream* out) { //should be private
+void LogStream::setOutput(std::ostream* out) { 
     _out = out;
 }
