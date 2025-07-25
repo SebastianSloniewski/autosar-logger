@@ -30,26 +30,12 @@ private:
 
     const std::string appId;
     const std::string appDescription;
+
     const std::string ctxId;
     const std::string ctxDescription;
     const LogLevel logLevel;
+
     const LogMode logMode;
-
-    friend Logger& CreateLogger(ara::core::StringView ctxId, 
-                               ara::core::StringView ctxDescription,
-                               LogLevel ctxDefLogLevel) noexcept;
-
-    friend Logger& CreateLogger(ara::core::StringView ctxId, 
-                               ara::core::StringView ctxDescription) noexcept;
-    
-    // Private constructor
-    Logger(ara::core::StringView ctxId, 
-           ara::core::StringView ctxDescription,
-           LogLevel defaultLevel) noexcept;
-    
-    // Internal implementation
-    class Impl;
-    std::unique_ptr<Impl> pImpl_;
 
 };
 }

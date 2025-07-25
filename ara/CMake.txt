@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 3.18)
 project(ara-log LANGUAGES CXX)
 
-# Allow consumers just: target_link_libraries(app PRIVATE ara-log)
 add_library(ara-log STATIC
     src/ara/log/log_stream.cpp
     src/ara/log/logger.cpp
